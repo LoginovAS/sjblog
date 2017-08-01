@@ -1,17 +1,14 @@
 package org.sbx.sjblog.dao;
 
-import org.sbx.sjblog.entity.DBObject;
-
+import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by loginov_a_s on 01.08.2017.
- */
-public interface Dao {
+public interface Dao <K, E> {
 
-    Integer create(DBObject o);
-    Integer update(DBObject o);
-    Integer delete(DBObject o);
-    List<DBObject> read(Object o);
+    List<E> getAll() throws SQLException;
+    void create(E o) throws SQLException ;
+    void update(E o) throws SQLException;
+    void delete(E o) throws SQLException;
+    E getObjectById(K id) throws SQLException;
 
 }
