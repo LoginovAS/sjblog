@@ -2,6 +2,8 @@ package org.sbx.sjblog.dao.impl;
 
 import org.sbx.sjblog.dao.Dao;
 import org.sbx.sjblog.entity.impl.Record;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +17,11 @@ import java.util.List;
 @Transactional
 public class RecordDao implements Dao <Integer, Record> {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "sjblog_PU")
     private EntityManager entityManager;
 
     public List<Record> getAll() throws SQLException {
-        TypedQuery<Record> query = entityManager.createQuery("SELECT r FROM Record", Record.class);
+        TypedQuery<Record> query = entityManager.createQuery("SELECT r FROM Record r", Record.class);
         return query.getResultList();
     }
 
