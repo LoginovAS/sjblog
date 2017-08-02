@@ -2,14 +2,12 @@ package org.sbx.sjblog.dao.impl;
 
 import org.sbx.sjblog.dao.Dao;
 import org.sbx.sjblog.entity.impl.Record;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class RecordDao implements Dao <Integer, Record> {
     private EntityManager entityManager;
 
     public List<Record> getAll() throws SQLException {
-        TypedQuery<Record> query = entityManager.createQuery("SELECT r FROM Record r", Record.class);
+        Query query = entityManager.createNamedQuery("getRecords");
         return query.getResultList();
     }
 

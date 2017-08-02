@@ -38,7 +38,7 @@ public class DatabaseConfig {
         dataSource.setDriverClassName(environment.getProperty("jdbc.driver"));
         dataSource.setUrl(environment.getProperty("jdbc.url"));
         dataSource.setUsername(environment.getProperty("jdbc.username"));
-        dataSource.setPassword("jdbc.password");
+        dataSource.setPassword(environment.getProperty("jdbc.password"));
 
         return dataSource;
     }
@@ -53,7 +53,7 @@ public class DatabaseConfig {
 
         entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactory.setPersistenceUnitName("sjblog_PU");
-        entityManagerFactory.setPackagesToScan("org.sbx.sjblog.dao");
+        entityManagerFactory.setPackagesToScan("org.sbx.sjblog.dao", "org.sbx.sjblog.entity");
 
         Properties properties = new Properties();
 
